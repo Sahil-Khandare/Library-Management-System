@@ -220,37 +220,33 @@ Available copies cannot be greater than total copies
 
 # 📷 Screenshots
 
-## Swagger UI
+### Swagger UI Homepage
 
-Add screenshots here.
-
-Example:
-
-```
-screenshots/swagger-home.png
-```
-
-```
-screenshots/swagger-create-book.png
-```
+![Swagger UI Homepage](screenshots/Homepage.jpg)
 
 ---
 
-## Postman Testing
+### Swagger UI – Create Book API
 
-Add screenshots here.
-
-Example:
-
-```
-screenshots/postman-get-books.png
-```
-
-```
-screenshots/postman-create-book.png
-```
+![Create Book](screenshots/Swagger_PostBooks.jpg)
 
 ---
+
+### Swagger UI – Get All Books API
+
+![Get Books](screenshots/Swagger_GetBooks.jpg)
+
+---
+
+### Postman – Update Book API (PATCH)
+
+![Update Book](screenshots/Postman_Patch.jpg)
+
+---
+
+### Postman – Delete Book API
+
+![Delete Book](screenshots/Postman_Delete.jpg)
 
 # Testing
 

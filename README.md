@@ -46,10 +46,11 @@ Library-Management-API/
 ├── README.md
 │
 └── screenshots/
-    ├── swagger-home.png
-    ├── swagger-create-book.png
-    ├── postman-get-books.png
-    └── postman-create-book.png
+    ├── Homepage.jpg
+    ├── Postman_Delete.jpg
+    ├── Postman_Patch.jpg
+    ├── Swagger_GetBooks.jpg
+    └── Swagger_PostBooks.jpg
 ```
 
 ---

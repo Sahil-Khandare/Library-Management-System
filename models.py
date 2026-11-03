@@ -1,5 +1,6 @@
-from sqlalchemy import CheckConstraint, Column, Date, Integer, String
+from sqlalchemy import CheckConstraint, Column, Date, DateTime, Integer, String, func, ForeignKey
 from database import Base
+
 
 class Book(Base):
     __tablename__ = "books"
@@ -16,4 +17,41 @@ class Book(Base):
         CheckConstraint("total_copies >= 0", name="ck_books_total_copies_non_negative"),
         CheckConstraint("available_copies >= 0", name="ck_books_available_copies_non_negative"),
         CheckConstraint("available_copies <= total_copies", name="ck_books_available_lte_total"),
+    )
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String(50), unique=True, nullable=False)
+    email = Column(String(100), unique=True, nullable=False)
+    hashed_password = Column(String(255), nullable=False)
+    role = Column(String(20), nullable=False, default="user")
+
+class BorrowRecord(Base):
+    __tablename__ = "borrow_records"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id"),
+        nullable=False
+    )
+
+    book_id = Column(
+        Integer,
+        ForeignKey("books.id"),
+        nullable=False
+    )
+
+    borrowed_at = Column(
+        DateTime,
+        nullable=False,
+        server_default=func.now()
+    )
+
+    returned_at = Column(
+        DateTime,
+        nullable=True
     )

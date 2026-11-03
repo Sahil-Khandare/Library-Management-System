@@ -1,4 +1,5 @@
 from datetime import date
+
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 def _check_copies(available: int | None, total: int | None) -> None:
@@ -64,3 +65,24 @@ class BookResponse(BaseModel):
     published_date: date
     total_copies: int
     available_copies: int
+
+class UserCreate(BaseModel):
+    username: str = Field(min_length=3, max_length=50)
+    email: str = Field(min_length=5, max_length=100)
+    password: str = Field(min_length=8, max_length=128)
+
+class UserResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    username: str
+    email: str
+
+class BorrowRecordResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    user_id: int
+    book_id: int
+    borrowed_at: datetime
+    returned_at: datetime | None

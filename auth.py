@@ -1,4 +1,3 @@
-
 import os
 from datetime import datetime, timedelta, timezone
 
@@ -13,8 +12,6 @@ from sqlalchemy.orm import Session
 from database import get_db
 from models import User
 
-
-# Load environment variables
 load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
@@ -26,7 +23,6 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 
-# Password hashing
 password_hash = PasswordHash.recommended()
 
 
@@ -37,12 +33,8 @@ def hash_password(password: str):
 def verify_password(plain_password: str, hashed_password: str):
     return password_hash.verify(plain_password, hashed_password)
 
-
-# JWT configuration
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
-
-# Generate JWT access token
 def create_access_token(data: dict, expires_delta=None):
     to_encode = data.copy()
 
@@ -63,8 +55,6 @@ def create_access_token(data: dict, expires_delta=None):
 
     return encoded_jwt
 
-
-# Get currently authenticated user
 def get_current_user(
     token: str = Depends(oauth2_scheme),
     db: Session = Depends(get_db)
